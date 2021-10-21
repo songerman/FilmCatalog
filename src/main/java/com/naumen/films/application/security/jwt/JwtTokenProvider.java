@@ -26,12 +26,8 @@ public class JwtTokenProvider implements UserDetailsService {
     @Value("${jwt.token.expired}")
     private long validityInMilliseconds;
 
-    private UserDetailsService userDetailsService;
-
     @Autowired
-    public void setUserDetailsService(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+    private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
