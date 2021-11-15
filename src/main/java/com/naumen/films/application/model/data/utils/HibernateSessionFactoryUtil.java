@@ -50,9 +50,6 @@ public class HibernateSessionFactoryUtil {
                 configuration.addAnnotatedClass(Review.class);
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Role.class);
-//                configuration.setProperty("hibernate.connection.url", DB_URL);
-//                configuration.setProperty("hibernate.connection.username", DB_USERNAME);
-//                configuration.setProperty("hibernate.connection.password", DB_PASSWORD);
                 StandardServiceRegistryBuilder builder =
                         new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
 

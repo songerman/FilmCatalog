@@ -41,15 +41,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new MyAuthenticationManager();
     }
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.jdbcAuthentication()
-//                .dataSource(dataSource)
-//                .usersByUsernameQuery(
-//                        "SELECT name, password, enabled FROM users WHERE name=?")
-//                .authoritiesByUsernameQuery(
-//                        "SELECT name, 'ROLE_USER' FROM users WHERE name=?");
-//    }
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource)
+                .usersByUsernameQuery(
+                        "SELECT name, password, enabled FROM users WHERE name=?")
+                .authoritiesByUsernameQuery(
+                        "SELECT name, 'ROLE_USER' FROM users WHERE name=?");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
