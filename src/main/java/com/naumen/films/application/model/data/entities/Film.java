@@ -1,6 +1,7 @@
 package com.naumen.films.application.model.data.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.Getter;
@@ -23,7 +24,6 @@ public class Film {
     @Column
     private String title;
 
-    @JsonManagedReference
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
@@ -38,9 +38,16 @@ public class Film {
     @Column
     private Float rating;
 
+    @Column
+    private String poster;
+
+    @Column
+    private String overview;
+
     @OneToMany(mappedBy = "film", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Review> reviews;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "favourites")
     private Set<User> likedBy;
 

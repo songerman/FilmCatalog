@@ -26,6 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String ADMIN_ENDPOINT = "/film_api/v1/admin/**";
     private static final String LOGIN_ENDPOINT = "/film_api/v1/auth/login";
+    private static final String REGISTER_ENDPOINT = "/film_api/v1/auth/register";
     private static final String START_URL = "/film_api/v1/**";
 
     @Autowired
@@ -37,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-//        return super.authenticationManagerBean();
-        return new MyAuthenticationManager();
+        return super.authenticationManagerBean();
+//        return new MyAuthenticationManager();
     }
 
     @Override
@@ -59,7 +60,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers(LOGIN_ENDPOINT).permitAll()
+                .antMatchers(START_URL).permitAll()
+                .antMatchers(REGISTER_ENDPOINT).permitAll()
                 .antMatchers(ADMIN_ENDPOINT).hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

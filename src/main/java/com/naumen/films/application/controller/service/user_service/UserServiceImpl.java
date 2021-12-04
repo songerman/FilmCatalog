@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
         User registeredUser = userRepository.save(user);
 
-        return  registeredUser;
+        return registeredUser;
     }
 
     @Override
@@ -69,5 +69,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(int id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public void addFavourite(int userId, int filmId) {
+        userRepository.addFavourite(userId, filmId);
     }
 }

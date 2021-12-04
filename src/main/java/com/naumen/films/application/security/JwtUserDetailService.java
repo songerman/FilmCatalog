@@ -23,11 +23,12 @@ public class JwtUserDetailService implements UserDetailsService {
         User user = userService.findByUsername(username);
 
         if (user == null) {
-            throw new UsernameNotFoundException("User with username: " + username + "not found");
+            throw new UsernameNotFoundException("User with username: " + username + " not found");
         }
+        else {
+            JwtUser jwtUser = JwtUserFactory.create(user);
 
-        JwtUser jwtUser = JwtUserFactory.create(user);
-
-        return jwtUser;
+            return jwtUser;
+        }
     }
 }
